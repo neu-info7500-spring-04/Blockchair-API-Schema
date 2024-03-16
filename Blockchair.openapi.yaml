@@ -1,0 +1,120 @@
+openapi: 3.0.0
+info:
+  title: Blockchair Bitcoin Addresses API
+  description: API for querying Bitcoin addresses based on balance.
+  version: "1.0.0"
+servers:
+  - url: https://api.blockchair.com/bitcoin
+    description: Blockchair Bitcoin API server
+paths:
+  /addresses:
+    get:
+      summary: Get Bitcoin addresses by balance range
+      operationId: getAddressesByBalance
+      parameters:
+        - name: q
+          in: query
+          description: Query to filter addresses by balance. Use balance(min..max) format.
+          required: true
+          schema:
+            type: string
+            example: "balance(10000000000..1000000000)"
+      responses:
+        '200':
+          description: A list of Bitcoin addresses matching the query.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        address:
+                          type: string
+                          description: The Bitcoin address.
+                          example: "bc1q2dy3rjcgmprl50dtytd93m6ape2md3r90wqmsz"
+                        balance:
+                          type: integer
+                          description: The balance of the address in satoshis.
+                          example: 10000000000
+                  context:
+                    type: object
+                    properties:
+                      code:
+                        type: integer
+                        example: 200
+                      source:
+                        type: string
+                        example: "A"
+                      limit:
+                        type: integer
+                        example: 10
+                      offset:
+                        type: integer
+                        example: 0
+                      rows:
+                        type: integer
+                        example: 10
+                      pre_rows:
+                        type: integer
+                        example: 10
+                      total_rows:
+                        type: integer
+                        example: 137844
+                      state:
+                        type: integer
+                        example: 834584
+                      market_price_usd:
+                        type: integer
+                        example: 73054
+                      cache:
+                        type: object
+                        properties:
+                          live:
+                            type: boolean
+                            example: true
+                          duration:
+                            type: integer
+                            example: 120
+                          since:
+                            type: string
+                            example: "2024-03-13 23:52:57"
+                          until:
+                            type: string
+                            example: "2024-03-13 23:54:57"
+                      api:
+                        type: object
+                        properties:
+                          version:
+                            type: string
+                            example: "2.0.95-ie"
+                          last_major_update:
+                            type: string
+                            example: "2022-11-07 02:00:00"
+                          next_major_update:
+                            type: string
+                            example: "2023-11-12 02:00:00"
+                          documentation:
+                            type: string
+                            example: "https://blockchair.com/api/docs"
+                      servers:
+                        type: string
+                        example: "API4,BTC4"
+                      time:
+                        type: number
+                        format: float
+                        example: 0.4821779727935791
+                      render_time:
+                        type: number
+                        format: float
+                        example: 0.0021848678588867188
+                      full_time:
+                        type: number
+                        format: float
+                        example: 0.4843628406524658
+                      request_cost:
+                        type: integer
+                        example: 3
