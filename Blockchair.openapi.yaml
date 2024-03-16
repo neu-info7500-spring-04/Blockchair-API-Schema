@@ -2,7 +2,7 @@ openapi: 3.0.0
 info:
   title: Blockchair Bitcoin Addresses API
   description: API for querying Bitcoin addresses based on balance.
-  version: "1.0.0"
+  version: 1.0.0
 servers:
   - url: https://api.blockchair.com/bitcoin
     description: Blockchair Bitcoin API server
